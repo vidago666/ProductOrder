@@ -1,3 +1,5 @@
+* a7c98c7 : fix bug
+* 51ec733 : update
 * 3085b0e : add log file
 * 195fd0b : add file
 * a89ab9d : Create README.md
