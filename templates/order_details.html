@@ -30,7 +30,7 @@
         {% for row in rows %}
           <li class="list-group-item">
             Details: {{row["id"]}} <br>
-            Product: <a href={{ url_for('pizzas', id= row['PizzaID']) }} class="text-danger">{{ row["PizzaID"] }}</a> <br>
+            Product: <a href={{ url_for('product', id= row['PizzaID']) }} class="text-danger">{{ row["PizzaID"] }}</a> <br>
             Quantity: {{ row["Quantity"] }}
           </li>
         {% endfor %}
