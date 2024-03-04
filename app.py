@@ -55,7 +55,7 @@ def ordersdata():
 def orderitem(id):
     db = fetchdb()
     try:
-        cur = db.execute("select * from orders WHERE id=?", (id,))
+        cur = db.execute("select * from orders where id=?", (id,))
         order = cur.fetchall()
         cur = db.execute("select * from order_details WHERE OrderID=?", (id,))
         rows = cur.fetchall()
