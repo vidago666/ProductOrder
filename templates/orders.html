@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Data</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-5">Order Data</h1>
+
+    <div class="row">
+      {% for row in rows %}
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Order: <a href="{{ url_for('order_details', id=row['id']) }}">{{ row['id'] }}</a></h5>
+            <p class="card-text">{{ row['OrderID'] }} | {{ row['Date'] }} | {{ row['Time'] }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if pagination['pages'] %}
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        {% if pagination['prev_num'] %}
+        <li class="page-item">
+          <a class="page-link" href="{{ url_for('orders', page=pagination['prev_num']) }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        {% endif %}
+        {% for page in pagination['pages'] %}
+        {% if page %}
+        <li class="page-item {% if pagination['page'] == page %}active{% endif %}">
+          <a class="page-link" href="{{ url_for('orders', page=page) }}">{{ page }}</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">...</span></li>
+        {% endif %}
+        {% endfor %}
+        {% if pagination['next_num'] %}
+        <li class="page-item">
+          <a class="page-link" href="{{ url_for('orders', page=pagination['next_num']) }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+</body>
+</html>

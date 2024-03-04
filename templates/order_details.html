@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Data</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h1>Order Data</h1>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Order: <b>{{order[0]["id"]}}</b></h5>
+        <p class="card-text">
+          Order ID: {{order[0]["OrderID"]}} <br>
+          Date: {{ order[0]["Date"]}} <br>
+          Time: {{ order[0]["Time"]}}
+        </p>
+      </div>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-header">
+        <h5>Details of orders {{order[0]["OrderID"]}}:</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        {% for row in rows %}
+          <li class="list-group-item">
+            Details: {{row["id"]}} <br>
+            Product: <a href={{ url_for('pizzas', id= row['PizzaID']) }} class="text-danger">{{ row["PizzaID"] }}</a> <br>
+            Quantity: {{ row["Quantity"] }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
